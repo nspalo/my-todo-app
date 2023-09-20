@@ -1,0 +1,17 @@
+# Environment
+/.idea
+/.vagrant
+.phpunit.result.cache
+npm-debug.log
+yarn-error.log
+Homestead.yaml
+Homestead.json
+node_modules/
+
+# Docker Volumes
+/docker/volumes/*
+!/docker/volumes
+!/docker/volumes/README.md
+
+# Project
+.env
