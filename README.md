@@ -1,5 +1,5 @@
-# Dockerized Web Development Template
-> A simple project that aims to build a Dockerized template environment for web development
+# My To-Do App
+> A simple to-do list web application built with laravel
 
 ![CI BUILD](https://github.com/nspalo/my-todo-app/actions/workflows/ci-build.yml/badge.svg)
 
@@ -30,8 +30,11 @@ my-project/                        // Main Project Directory
 │   │   ├── test.env
 │   │   └── prod.env
 │   ├── volumes/                   // Volumes Dir - Data persistence
-│   │   └── mysql/                 // Database
-│   │       └── mysql_<version>/   // Specific database version
+│   │   ├── mysql/                 // Database
+│   │   │   └── mysql_<version>    // Specific database version
+│   │   └── logs/
+│   │       ├── nginx/
+│   │       └── php/
 │   └── docker-compose.yml         // Main Docker compose file
 ├── scripts/                       // This should contains all *.sh files 
 │   ├── main-docker-compose.sh     // Main script that executes the base docker commands
