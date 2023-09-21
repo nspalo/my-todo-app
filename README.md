@@ -47,13 +47,11 @@ my-project/                        // Main Project Directory
 │   ├── composer.sh                // Run composer and its command
 │   ├── prune.sh                   // Remove all images, run with care!
 │   └── *.sh
-├── src/                           // Project source code here...
-│   └── public/                    // temporary directory just for initial set up
-│       └── index.php              // default file just to make sure things work, shows phpinfo
-├──────────────────────────────────────────────────────────────────────────────────────────────
-│       Or have a separete the source directory code for frontend and backend,
-│       instead of just src/ to hold all the code. The structure below could be use.
-├──────────────────────────────────────────────────────────────────────────────────────────────
-├── frontend(-src)/                // Front-end source code only
-└── backend(-src)/                 // Back-end source code only
+└── src/                           // Project source code here...
+    ├──────────────────────────────────────────────────────────────────────────────────────────
+    │ To-Do App codes - Laravel 8 ...
+    ├──────────────────────────────────────────────────────────────────────────────────────────
+    ├── app/
+    ├── ...
+    └── README.md
 ```
