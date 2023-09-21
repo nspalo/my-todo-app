@@ -1,0 +1,18 @@
+parameters:
+    level: 7
+    paths:
+        - app
+        - tests
+
+    ignoreErrors:
+    # TODO: Skipping Out Of The Box PhpStan Errors from Laravel Laravel v8.83.27 (PHP v8.1.23)
+
+    # See: Line 17 - app/Http/Middleware/Authenticate.php
+    - '/Method App\\Http\\Middleware\\Authenticate::redirectTo\(\) should return string\|null but return statement is missing./'
+
+    # See: Line 26 - app/Http/Middleware/RedirectIfAuthenticated.php
+    - '/Method App\\Http\\Middleware\\RedirectIfAuthenticated::handle\(\) should return Illuminate\\Http\\RedirectResponse\|Illuminate\\Http\\Response but returns Illuminate\\Http\\RedirectResponse\|Illuminate\\Routing\\Redirector./'
+
+    # See: Line 36 - app/Providers/RouteServiceProvider.php
+    - '/PHPDoc tag @var above a method has no effect./'
+    - '/PHPDoc tag @var does not specify variable name./'
