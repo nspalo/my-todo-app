@@ -19,7 +19,8 @@
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^5.10",
         "phpstan/phpstan": "^1.10",
-        "phpunit/phpunit": "^9.5.10"
+        "phpunit/phpunit": "^9.5.10",
+        "symplify/easy-coding-standard": "^12.0"
     },
     "autoload": {
         "psr-4": {
@@ -52,6 +53,21 @@
         ],
         "phpstan": [
             "vendor/bin/phpstan --configuration=./phpstan.neon"
+        ],
+        "ecs-all": [
+            "vendor/bin/ecs check app tests --clear-cache"
+        ],
+        "ecs-app": [
+            "vendor/bin/ecs check app --clear-cache"
+        ],
+        "ecs-test": [
+            "vendor/bin/ecs check tests --clear-cache"
+        ],
+        "ecs-app-fix": [
+            "vendor/bin/ecs check app --fix --clear-cache"
+        ],
+        "ecs-test-fix": [
+            "vendor/bin/ecs check tests --fix --clear-cache"
         ]
     },
     "extra": {
