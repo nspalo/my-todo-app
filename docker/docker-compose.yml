@@ -106,27 +106,27 @@ services:
     depends_on:
       - php
     entrypoint: ['npm']
-#
-#  # +----------------------+ #
-#  # | Container: Artisan   | #
-#  # +----------------------+ #
-#  artisan:
-#    networks:
-#      - web-app
-#    container_name: artisan
-#    build:
-#      context: .
-#      dockerfile: containers/php/Dockerfile
-#    image: artisan:laravel-9
-#    links:
-#      - php
-#      - database
-#    env_file:
-#      - ${PATH_ENVIRONMENTS}/${SYS_ENV}.env
-#    working_dir: /var/www/html
-#    volumes:
-#      - "${PATH_SOURCE_LOCAL}:${PATH_SOURCE_LIVE}"
-#    depends_on:
-#      - php
-#      - database
-#    entrypoint: ['php', '/var/www/html/artisan']
+
+  # +----------------------+ #
+  # | Container: Artisan   | #
+  # +----------------------+ #
+  artisan:
+    networks:
+      - web-app
+    container_name: artisan
+    build:
+      context: .
+      dockerfile: containers/php/Dockerfile
+    image: artisan:laravel-8
+    links:
+      - php
+      - database
+    env_file:
+      - ${PATH_ENVIRONMENTS}/${SYS_ENV}.env
+    volumes:
+      - "${PATH_CONFIGS_PHP}:/usr/local/etc/php/php.ini"
+      - "${PATH_SOURCE_LOCAL}:${PATH_SOURCE_LIVE}"
+    depends_on:
+      - php
+      - database
+    entrypoint: ['php', '/var/www/html/artisan']
