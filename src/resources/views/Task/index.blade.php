@@ -3,7 +3,7 @@
 @section('content')
 
     <div id="app">
-        <example-component></example-component>
+        <vue-app></vue-app>
     </div>
 
 @endsection
