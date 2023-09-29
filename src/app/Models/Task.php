@@ -19,7 +19,7 @@ use Illuminate\Support\Collection;
  *
  * @property int $id
  * @property string $title
- * @property int $completed
+ * @property boolean $completed
  * @property Carbon $completed_at
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -43,8 +43,20 @@ class Task extends Model
         'updated_at',
     ];
 
+    protected $visible = [
+        'title',
+        'completed',
+        'completed_at',
+    ];
+
+    protected $dates = [
+        'created_at',
+        'completed_at',
+        'updated_at',
+    ];
+
     public function isCompleted(): bool
     {
-        return (bool)$this->completed;
+        return $this->completed;
     }
 }
