@@ -87,11 +87,14 @@ class TaskApiController extends Controller
             return new Response('TASK NOT FOUND!', 404);
         }
 
-        if($request->task['completed'] === true && $task->isCompleted() === false) {
-            $task->completed = true;
-            $task->completed_at = Carbon::now();
-            $task->save();
+        // if current status is the same as update do nothing
+        if($task->isCompleted() === $request->task['completed']) {
+            return $task;
         }
+
+        $task->completed = $request->task['completed'] ? 1 : 0;
+        $task->completed_at = $request->task['completed'] ? Carbon::now() : null;
+        $task->save();
 
         return $task;
     }
