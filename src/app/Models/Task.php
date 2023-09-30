@@ -43,16 +43,10 @@ class Task extends Model
         'updated_at',
     ];
 
-    protected $visible = [
-        'title',
-        'completed',
-        'completed_at',
-    ];
-
-    protected $dates = [
-        'created_at',
-        'completed_at',
-        'updated_at',
+    protected $casts = [
+        'created_at' => 'date:Y/m/d',
+        'completed_at' => 'date:Y/m/d',
+        'updated_at' => 'date:Y/m/d',
     ];
 
     public function isCompleted(): bool
