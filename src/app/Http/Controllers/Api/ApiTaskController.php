@@ -59,7 +59,7 @@ class ApiTaskController extends Controller
      */
     public function update(TaskRequest $request, Task $task): TaskResource
     {
-        if($request->validated()) {
+        if ($request->validated()) {
             $task->completed_at = Carbon::now();
             $task->update($request->validated());
         }
