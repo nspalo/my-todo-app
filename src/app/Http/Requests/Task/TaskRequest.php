@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Task;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -16,6 +16,16 @@ class TaskRequest extends FormRequest
     public function authorize(): bool
     {
         return true;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->get('title');
+    }
+
+    public function getCompleted(): ?bool
+    {
+        return (bool)$this->get('completed');
     }
 
     /**

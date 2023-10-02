@@ -53,4 +53,40 @@ class Task extends Model
     {
         return $this->completed;
     }
+
+    public function getTitle(): string
+    {
+        return $this->getAttribute('title');
+    }
+
+    public function getCompleted(): ?string
+    {
+        return $this->getAttribute('completed');
+    }
+
+    public function getCompletedAt(): ?Carbon
+    {
+        return $this->getAttribute('completed_at');
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->setAttribute('title', $title);
+
+        return $this;
+    }
+
+    public function setCompleted(bool $completed): self
+    {
+        $this->setAttribute('completed', $completed);
+
+        return $this;
+    }
+
+    public function setCompletedAt(Carbon $date): self
+    {
+        $this->setAttribute('completed_at', $date);
+
+        return $this;
+    }
 }
