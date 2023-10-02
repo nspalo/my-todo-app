@@ -5,14 +5,86 @@ parameters:
         - tests
 
     ignoreErrors:
-    # TODO: Skipping Out Of The Box PhpStan Errors from Laravel Laravel v8.83.27 (PHP v8.1.23)
+    # TODO: FIX PhpStan error for my codes ONLY! For now, leave laravel stuff to laravel. Not required to fix this atm.
+    # TODO: Skipping Out Of The Box PhpStan Errors from Laravel - Laravel v8.83.27 (PHP v8.1.23)
 
-    # See: Line 17 - app/Http/Middleware/Authenticate.php
+    # See: app/Http/Middleware/Authenticate.php | Line: 17
     - '/Method App\\Http\\Middleware\\Authenticate::redirectTo\(\) should return string\|null but return statement is missing./'
 
-    # See: Line 26 - app/Http/Middleware/RedirectIfAuthenticated.php
+    # See: app/Http/Middleware/RedirectIfAuthenticated.php | Line: 26
     - '/Method App\\Http\\Middleware\\RedirectIfAuthenticated::handle\(\) should return Illuminate\\Http\\RedirectResponse\|Illuminate\\Http\\Response but returns Illuminate\\Http\\RedirectResponse\|Illuminate\\Routing\\Redirector./'
 
-    # See: Line 36 - app/Providers/RouteServiceProvider.php
+    # See: app/Providers/RouteServiceProvider.php | Line: 36
     - '/PHPDoc tag @var above a method has no effect./'
     - '/PHPDoc tag @var does not specify variable name./'
+
+    # TODO: Skipping Additional Out Of The Box PhpStan Errors from Laravel Auth - Laravel v8.83.27 (PHP v8.1.23)
+    # See: app/Http/Controllers/Auth/AuthenticatedSessionController.php | Line: 22 37 48 54
+    - '/Method App\\Http\\Controllers\\Auth\\AuthenticatedSessionController::create\(\) should return Illuminate\\View\\View but returns Illuminate\\Contracts\\View\\Factory\|Illuminate\\Contracts\\View\\View./'
+    - '/Call to an undefined method Illuminate\\Http\\RedirectResponse\|Illuminate\\Routing\\Redirector::intended\(\)./'
+    - '/Call to an undefined method Illuminate\\Contracts\\Auth\\Guard::logout\(\)./'
+    - '/Method App\\Http\\Controllers\\Auth\\AuthenticatedSessionController::destroy\(\) should return Illuminate\\Http\\RedirectResponse but returns Illuminate\\Http\\RedirectResponse\|Illuminate\\Routing\\Redirector./'
+
+    # See: app/Http/Controllers/Auth/ConfirmablePasswordController.php | Line: 22 35
+    - '/Method App\\Http\\Controllers\\Auth\\ConfirmablePasswordController::show\(\) should return Illuminate\\View\\View but returns Illuminate\\Contracts\\View\\Factory\|Illuminate\\Contracts\\View\\View./'
+    - '/Access to an undefined property Illuminate\\Http\\Request::\$password./'
+
+    # See: app/Http/Controllers/Auth/NewPasswordController.php | Line: 25 53 65
+    - '/Method App\\Http\\Controllers\\Auth\\NewPasswordController::create\(\) should return Illuminate\\View\\View but returns Illuminate\\Contracts\\View\\Factory\|Illuminate\\Contracts\\View\\View./'
+    #- '/Access to an undefined property Illuminate\\Http\\Request::\$password./'
+    - '/Call to an undefined method Illuminate\\Http\\RedirectResponse\|Illuminate\\Routing\\Redirector::route\(\)./'
+
+    # See: app/Http/Controllers/Auth/PasswordResetLinkController.php | Line: 20
+    - '/Method App\\Http\\Controllers\\Auth\\PasswordResetLinkController::create\(\) should return Illuminate\\View\\View but returns Illuminate\\Contracts\\View\\Factory\|Illuminate\\Contracts\\View\\View./'
+
+    # See: app/Http/Controllers/Auth/RegisteredUserController.php | Line: 25 44 45 46 47 54
+    - '/Method App\\Http\\Controllers\\Auth\\RegisteredUserController::create\(\) should return Illuminate\\View\\View but returns Illuminate\\Contracts\\View\\Factory\|Illuminate\\Contracts\\View\\View./'
+    - '/Call to an undefined static method App\\Models\\User::create\(\)./'
+    - '/Access to an undefined property Illuminate\\Http\\Request::\$name./'
+    - '/Access to an undefined property Illuminate\\Http\\Request::\$email./'
+    #- '/Access to an undefined property Illuminate\\Http\\Request::\$password./'
+    - '/Method App\\Http\\Controllers\\Auth\\RegisteredUserController::store\(\) should return Illuminate\\Http\\RedirectResponse but returns Illuminate\\Http\\RedirectResponse\|Illuminate\\Routing\\Redirector./'
+
+    # See: app/Http/Requests/Auth/LoginRequest.php | Line: 31
+    - '/Method App\\Http\\Requests\\Auth\\LoginRequest::rules\(\) return type has no value type specified in iterable type array./'
+
+    # See: app/View/Components/AppLayout.php | Line: 18
+    - '/Method App\\View\\Components\\AppLayout::render\(\) should return Illuminate\\View\\View but returns Illuminate\\Contracts\\View\\Factory\|Illuminate\\Contracts\\View\\View./'
+
+    # See: app/View/Components/GuestLayout.php | Line: 18
+    - '/Method App\\View\\Components\\GuestLayout::render\(\) should return Illuminate\\View\\View but returns Illuminate\\Contracts\\View\\Factory\|Illuminate\\Contracts\\View\\View./'
+
+    # See: tests/Feature/Auth/AuthenticationTest.php | Line: 16 23 28 36 41
+    - '/Method Tests\\Feature\\Auth\\AuthenticationTest::testLoginScreenCanBeRendered\(\) has no return type specified./'
+    - '/Method Tests\\Feature\\Auth\\AuthenticationTest::testUsersCanAuthenticateUsingTheLoginScreen\(\) has no return type specified./'
+    - '/Access to an undefined property Illuminate\\Database\\Eloquent\\Collection\|Illuminate\\Database\\Eloquent\\Model::\$email./'
+    - '/Method Tests\\Feature\\Auth\\AuthenticationTest::testUsersCanNotAuthenticateWithInvalidPassword\(\) has no return type specified./'
+
+    # See: tests/Feature/Auth/EmailVerificationTest.php | Line: 19 25 31 42 47 50 54 64 69 71
+    - '/Method Tests\\Feature\\Auth\\EmailVerificationTest::testEmailVerificationScreenCanBeRendered\(\) has no return type specified./'
+    - '/Parameter #1 \$user of method Illuminate\\Foundation\\Testing\\TestCase::actingAs\(\) expects Illuminate\\Contracts\\Auth\\Authenticatable, Illuminate\\Database\\Eloquent\\Collection\|Illuminate\\Database\\Eloquent\\Model given./'
+    - '/Method Tests\\Feature\\Auth\\EmailVerificationTest::testEmailCanBeVerified\(\) has no return type specified./'
+    - '/Access to an undefined property Illuminate\\Database\\Eloquent\\Collection\|Illuminate\\Database\\Eloquent\\Model::\$id./'
+    - '/Call to an undefined method Illuminate\\Database\\Eloquent\\Collection\|Illuminate\\Database\\Eloquent\\Model::hasVerifiedEmail\(\)./'
+
+    # See: tests/Feature/Auth/EmailVerificationTest.php | Line: 54
+    - '/Method Tests\\Feature\\Auth\\EmailVerificationTest::testEmailIsNotVerifiedWithInvalidHash\(\) has no return type specified./'
+
+    # See: tests/Feature/Auth/PasswordConfirmationTest.php | Line: 15 24 36
+    - '/Method Tests\\Feature\\Auth\\PasswordConfirmationTest::testConfirmPasswordScreenCanBeRendered\(\) has no return type specified./'
+    - '/Method Tests\\Feature\\Auth\\PasswordConfirmationTest::testPasswordCanBeConfirmed\(\) has no return type specified./'
+    - '/Method Tests\\Feature\\Auth\\PasswordConfirmationTest::testPasswordIsNotConfirmedWithInvalidPassword\(\) has no return type specified./'
+
+    # See: tests/Feature/Auth/PasswordResetTest.php | Line: 17 24 37 56
+    - '/Method Tests\\Feature\\Auth\\PasswordResetTest::testResetPasswordLinkScreenCanBeRendered\(\) has no return type specified./'
+    - '/Method Tests\\Feature\\Auth\\PasswordResetTest::testResetPasswordLinkCanBeRequested\(\) has no return type specified./'
+    - '/Method Tests\\Feature\\Auth\\PasswordResetTest::testResetPasswordScreenCanBeRendered\(\) has no return type specified./'
+    - '/Method Tests\\Feature\\Auth\\PasswordResetTest::testPasswordCanBeResetWithValidToken\(\) has no return type specified./'
+
+    # See: tests/Feature/Auth/RegistrationTest.php | Line: 15 22
+    - '/Method Tests\\Feature\\Auth\\RegistrationTest::testRegistrationScreenCanBeRendered\(\) has no return type specified./'
+    - '/Method Tests\\Feature\\Auth\\RegistrationTest::testNewUsersCanRegister\(\) has no return type specified./'
+
+    # TODO: TEMPLATE
+    # See: CODE_PATH | Line: XX
+    #- '//'

@@ -5,15 +5,23 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TaskRequest;
-use App\Http\Resources\TaskResource;
+use App\Http\Requests\Task\TaskRequest;
+use App\Http\Resources\Task\TaskResource as TaskResponseResource;
 use App\Models\Task;
+use App\Repositories\Task\Interfaces\TaskRepositoryInterface;
+use App\Repositories\Task\Resources\TaskResource as TaskDbResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
-use Illuminate\Support\Carbon;
 
 class ApiTaskController extends Controller
 {
+    private TaskRepositoryInterface $taskRepository;
+
+    public function __construct(TaskRepositoryInterface $taskRepository)
+    {
+        $this->taskRepository = $taskRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,50 +29,52 @@ class ApiTaskController extends Controller
      */
     public function index(): ResourceCollection
     {
-        return TaskResource::collection(
-            Task::all()
+        return TaskResponseResource::collection(
+            $this->taskRepository->findAll()
         );
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\TaskRequest $request
-     * @return \App\Http\Resources\TaskResource
+     * @param \App\Http\Requests\Task\TaskRequest $request
+     * @return \App\Http\Resources\Task\TaskResource
      */
-    public function store(TaskRequest $request): TaskResource
+    public function store(TaskRequest $request): TaskResponseResource
     {
-        $task = Task::create($request->validated());
+        $task = $this->taskRepository->create(
+            new TaskDbResource($request->validated())
+        );
 
-        return new TaskResource($task);
+        return new TaskResponseResource($task);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Task  $task
-     * @return \App\Http\Resources\TaskResource
+     * @return \App\Http\Resources\Task\TaskResource
      */
-    public function show(Task $task): TaskResource
+    public function show(Task $task): TaskResponseResource
     {
-        return new TaskResource($task);
+        return new TaskResponseResource($task);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \App\Http\Requests\TaskRequest $request
+     * @param \App\Http\Requests\Task\TaskRequest $request
      * @param  \App\Models\Task  $task
-     * @return \App\Http\Resources\TaskResource
+     * @return \App\Http\Resources\Task\TaskResource
      */
-    public function update(TaskRequest $request, Task $task): TaskResource
+    public function update(TaskRequest $request, Task $task): TaskResponseResource
     {
-        if($request->validated()) {
-            $task->completed_at = Carbon::now();
-            $task->update($request->validated());
-        }
+        $task = $this->taskRepository->update(
+            $task,
+            new TaskDbResource($request->validated())
+        );
 
-        return new TaskResource($task);
+        return new TaskResponseResource($task);
     }
 
     /**
