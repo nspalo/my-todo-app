@@ -63,7 +63,7 @@ class ApiTaskController extends Controller
      */
     public function show(Task $task): TaskResponseResource
     {
-        $task = $this->service->findTaskById($task);
+        $task = $this->service->getTask($task);
 
         return new TaskResponseResource($task);
     }

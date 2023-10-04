@@ -14,7 +14,7 @@ interface TaskServiceInterface
 
     public function listTask(): Collection;
 
-    public function findTaskById(Task $task): Task;
+    public function getTask(Task $task): Task;
 
     public function updateTask(Task $task, TaskRequest $request): Task;
 }
