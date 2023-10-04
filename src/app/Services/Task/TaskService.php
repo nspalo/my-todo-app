@@ -29,7 +29,7 @@ class TaskService implements TaskServiceInterface
         }
 
         return $this->repository->create(
-            new TaskResource($request->validated())
+            new TaskResource($validated)
         );
     }
 
@@ -53,7 +53,7 @@ class TaskService implements TaskServiceInterface
 
         return $this->repository->update(
             $task,
-            new TaskResource($request->validated())
+            new TaskResource($validated)
         );
     }
 }
