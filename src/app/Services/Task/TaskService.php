@@ -38,7 +38,7 @@ class TaskService implements TaskServiceInterface
         return $this->repository->findAll();
     }
 
-    public function findTaskById(Task $task): Task
+    public function getTask(Task $task): Task
     {
         return $this->repository->findById($task->getId());
     }
