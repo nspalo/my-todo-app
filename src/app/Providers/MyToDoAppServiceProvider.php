@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Repositories\Task\Interfaces\TaskRepositoryInterface;
 use App\Repositories\Task\TaskRepository;
+use App\Services\Task\Interfaces\TaskServiceInterface;
+use App\Services\Task\TaskService;
 use Illuminate\Support\ServiceProvider;
 
 class MyToDoAppServiceProvider extends ServiceProvider
@@ -26,5 +28,6 @@ class MyToDoAppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(TaskRepositoryInterface::class, TaskRepository::class);
+        $this->app->bind(TaskServiceInterface::class, TaskService::class);
     }
 }
