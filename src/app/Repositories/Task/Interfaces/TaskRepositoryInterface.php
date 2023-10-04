@@ -14,5 +14,7 @@ interface TaskRepositoryInterface
 
     public function findAll(): Collection;
 
+    public function findById(int $taskId): Task;
+
     public function update(Task $task, TaskResource $resource): Task;
 }

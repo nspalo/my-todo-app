@@ -49,6 +49,11 @@ class Task extends Model
         'updated_at' => 'date:Y/m/d',
     ];
 
+    public function getId(): int
+    {
+        return $this->getAttribute('id');
+    }
+
     public function isCompleted(): bool
     {
         return $this->completed;
