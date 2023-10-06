@@ -5,13 +5,19 @@ declare(strict_types=1);
 namespace App\Repositories\Task;
 
 use App\Models\Task;
+use App\Repositories\AbstractRepository;
 use App\Repositories\Task\Interfaces\TaskRepositoryInterface;
 use App\Repositories\Task\Resources\TaskResource;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
-class TaskRepository implements TaskRepositoryInterface
+class TaskRepository extends AbstractRepository implements TaskRepositoryInterface
 {
+    public function __construct()
+    {
+        parent::__construct(new Task());
+    }
+
     public function create(TaskResource $resource): Task
     {
         $task = (new Task())
@@ -25,7 +31,17 @@ class TaskRepository implements TaskRepositoryInterface
 
     public function findAll(): Collection
     {
-        return Task::all();
+        return $this->getQuery()->get();
+    }
+
+    public function findById(int $taskId): Task
+    {
+        /** @var \App\Models\Task $model */
+        $model =  $this->getQuery()
+            ->where('id', '=', $taskId)
+            ->first();
+
+        return $model;
     }
 
     public function update(Task $task, TaskResource $resource): Task

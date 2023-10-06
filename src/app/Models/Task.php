@@ -44,10 +44,15 @@ class Task extends Model
     ];
 
     protected $casts = [
-        'created_at' => 'date:Y/m/d',
-        'completed_at' => 'date:Y/m/d',
-        'updated_at' => 'date:Y/m/d',
+        'created_at' => 'date:d/m/Y g:i A',
+        'completed_at' => 'date:d/m/Y g:i A',
+        'updated_at' => 'date:d/m/Y g:i A',
     ];
+
+    public function getId(): int
+    {
+        return $this->getAttribute('id');
+    }
 
     public function isCompleted(): bool
     {
@@ -59,9 +64,9 @@ class Task extends Model
         return $this->getAttribute('title');
     }
 
-    public function getCompleted(): ?string
+    public function getCompleted(): bool
     {
-        return $this->getAttribute('completed');
+        return (bool)$this->getAttribute('completed');
     }
 
     public function getCompletedAt(): ?Carbon
