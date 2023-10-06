@@ -13,19 +13,15 @@ class TaskResource implements Initialisable
 
     private string $title;
 
-    private bool $completed;
+    private bool $completed = false;
 
     public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
-    public function setCompleted(?bool $completed): void
+    public function setCompleted(bool $completed): void
     {
-        if($completed === null) {
-            $completed = false;
-        }
-
         $this->completed = $completed;
     }
 
