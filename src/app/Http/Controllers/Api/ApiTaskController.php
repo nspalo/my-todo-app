@@ -6,13 +6,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Task\TaskRequest;
+use App\Http\Resources\EmptyResponseResource;
+use App\Http\Resources\ErrorResponseResource;
 use App\Http\Resources\Task\TaskResource as TaskResponseResource;
 use App\Models\Task;
 use App\Services\Task\Interfaces\TaskServiceInterface;
 use Exception;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Illuminate\Http\Response;
 
 class ApiTaskController extends Controller
 {
@@ -39,17 +40,15 @@ class ApiTaskController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \App\Http\Requests\Task\TaskRequest $request
-     * @return \Illuminate\Http\Resources\Json\JsonResource|\App\Http\Resources\Task\TaskResource
+     * @return ErrorResponseResource
      */
-    public function store(TaskRequest $request): JsonResource
+    public function store(TaskRequest $request): ErrorResponseResource|TaskResponseResource
     {
         try {
             $task = $this->service->creatTask($request);
         } catch (Exception $e) {
-            return new JsonResource([
-                'message' => $e->getMessage(),
-                'status' => Response::HTTP_BAD_REQUEST,
-            ]);
+
+            return new ErrorResponseResource($e->getMessage());
         }
 
         return new TaskResponseResource($task);
@@ -80,10 +79,8 @@ class ApiTaskController extends Controller
         try {
             $task = $this->service->updateTask($task, $request);
         } catch (Exception $e) {
-            return new JsonResource([
-                'message' => $e->getMessage(),
-                'status' => Response::HTTP_BAD_REQUEST,
-            ]);
+
+            return new ErrorResponseResource($e->getMessage());
         }
 
         return new TaskResponseResource($task);
@@ -99,9 +96,6 @@ class ApiTaskController extends Controller
     {
         $task->delete();
 
-        return new JsonResource([
-            'message' => '',
-            'status' => Response::HTTP_NO_CONTENT,
-        ]);
+        return new EmptyResponseResource();
     }
 }
