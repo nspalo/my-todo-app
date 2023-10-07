@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Task\TaskRequest;
-use App\Http\Resources\EmptyResponseResource;
 use App\Http\Resources\ErrorResponseResource;
 use App\Http\Resources\Task\TaskResource as TaskResponseResource;
 use App\Models\Task;
@@ -15,7 +13,7 @@ use Exception;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class ApiTaskController extends Controller
+class ApiTaskController extends ApiBaseController
 {
     private TaskServiceInterface $service;
 
@@ -48,7 +46,7 @@ class ApiTaskController extends Controller
             $task = $this->service->creatTask($request);
         } catch (Exception $e) {
 
-            return new ErrorResponseResource($e->getMessage());
+            return $this->apiErrorResponse($e->getMessage());
         }
 
         return new TaskResponseResource($task);
@@ -80,7 +78,7 @@ class ApiTaskController extends Controller
             $task = $this->service->updateTask($task, $request);
         } catch (Exception $e) {
 
-            return new ErrorResponseResource($e->getMessage());
+            return $this->apiErrorResponse($e->getMessage());
         }
 
         return new TaskResponseResource($task);
@@ -96,6 +94,6 @@ class ApiTaskController extends Controller
     {
         $task->delete();
 
-        return new EmptyResponseResource();
+        return $this->apiNoContentResponse();
     }
 }
