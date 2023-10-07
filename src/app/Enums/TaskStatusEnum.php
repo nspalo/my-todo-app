@@ -6,11 +6,13 @@ namespace App\Enums;
 
 use App\Traits\ArrayableEnumTrait;
 
-enum TaskStatusEnum: int
+enum TaskStatusEnum: string
 {
     use ArrayableEnumTrait;
 
-    case CREATED = 0;
+    case CREATED = 'created';
 
-    case COMPLETED = 1;
+    case IN_PROGRESS = 'in_progress';
+
+    case COMPLETED = 'completed';
 }
