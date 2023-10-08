@@ -45,7 +45,6 @@ class ApiTaskController extends ApiBaseController
         try {
             $task = $this->service->creatTask($request);
         } catch (Exception $e) {
-
             return $this->apiErrorResponse($e->getMessage());
         }
 
@@ -77,7 +76,6 @@ class ApiTaskController extends ApiBaseController
         try {
             $task = $this->service->updateTask($task, $request);
         } catch (Exception $e) {
-
             return $this->apiErrorResponse($e->getMessage());
         }
 

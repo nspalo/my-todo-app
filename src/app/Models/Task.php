@@ -75,7 +75,7 @@ class Task extends Model
 
     public function getCompleted(): bool
     {
-        return (bool)$this->getAttribute('completed');
+        return (bool) $this->getAttribute('completed');
     }
 
     public function getCompletedAt(): ?Carbon

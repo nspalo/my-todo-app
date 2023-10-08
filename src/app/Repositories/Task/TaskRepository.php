@@ -38,7 +38,7 @@ class TaskRepository extends AbstractRepository implements TaskRepositoryInterfa
     public function findById(int $taskId): Task
     {
         /** @var \App\Models\Task $model */
-        $model =  $this->getQuery()
+        $model = $this->getQuery()
             ->where('id', '=', $taskId)
             ->first();
 

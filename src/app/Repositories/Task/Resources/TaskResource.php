@@ -42,7 +42,7 @@ class TaskResource implements Initialisable
 
     public function getStatus(): TaskStatusEnum
     {
-        if($this->status === null) {
+        if ($this->status === null) {
             $this->status = TaskStatusEnum::CREATED;
         }
 

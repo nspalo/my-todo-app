@@ -24,7 +24,7 @@ class TaskService implements TaskServiceInterface
     {
         $validated = $request->validated();
 
-        if(empty($validated) === true) {
+        if (empty($validated) === true) {
             throw new \RuntimeException('Invalid Request data');
         }
 
@@ -47,7 +47,7 @@ class TaskService implements TaskServiceInterface
     {
         $validated = $request->validated();
 
-        if(empty($validated) === true) {
+        if (empty($validated) === true) {
             throw new \RuntimeException('Invalid request data');
         }
 

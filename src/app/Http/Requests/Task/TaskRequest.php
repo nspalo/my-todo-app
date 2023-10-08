@@ -26,7 +26,7 @@ class TaskRequest extends FormRequest
 
     public function getStatus(): TaskStatusEnum
     {
-        if($this->has('status') === false) {
+        if ($this->has('status') === false) {
             return TaskStatusEnum::CREATED;
         }
 
@@ -37,7 +37,7 @@ class TaskRequest extends FormRequest
 
     public function getCompleted(): ?bool
     {
-        return (bool)$this->get('completed');
+        return (bool) $this->get('completed');
     }
 
     /**
@@ -47,7 +47,7 @@ class TaskRequest extends FormRequest
      */
     public function rules(): array
     {
-        $allowedStatus =  implode(",", TaskStatusEnum::values());
+        $allowedStatus = implode(',', TaskStatusEnum::values());
 
         return [
             'title' => ['sometimes', 'required', 'string'],
