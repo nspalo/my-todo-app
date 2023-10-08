@@ -22,6 +22,7 @@ class TaskRepository extends AbstractRepository implements TaskRepositoryInterfa
     {
         $task = (new Task())
             ->setTitle($resource->getTitle())
+            ->setStatus($resource->getStatus())
             ->setCompleted($resource->getCompleted());
 
         $task->save();
@@ -37,7 +38,7 @@ class TaskRepository extends AbstractRepository implements TaskRepositoryInterfa
     public function findById(int $taskId): Task
     {
         /** @var \App\Models\Task $model */
-        $model =  $this->getQuery()
+        $model = $this->getQuery()
             ->where('id', '=', $taskId)
             ->first();
 
@@ -47,6 +48,7 @@ class TaskRepository extends AbstractRepository implements TaskRepositoryInterfa
     public function update(Task $task, TaskResource $resource): Task
     {
         $task->setTitle($resource->getTitle())
+            ->setStatus($resource->getStatus())
             ->setCompleted($resource->getCompleted())
             ->setCompletedAt(Carbon::now());
         $task->save();

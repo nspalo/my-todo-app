@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -8,13 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 abstract class BaseResource extends JsonResource
 {
     protected ?int $status = null;
-
-    abstract protected function getResponse(): array;
-
-    protected function getStatus(): int
-    {
-        return Response::HTTP_OK;
-    }
 
     /**
      * Transform the resource into an array.
@@ -25,5 +20,12 @@ abstract class BaseResource extends JsonResource
     public function toArray($request): array
     {
         return $this->getResponse();
+    }
+
+    abstract protected function getResponse(): array;
+
+    protected function getStatus(): int
+    {
+        return Response::HTTP_OK;
     }
 }

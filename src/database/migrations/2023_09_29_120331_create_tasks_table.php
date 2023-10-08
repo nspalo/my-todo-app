@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Enums\TaskStatusEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -25,9 +26,12 @@ class CreateTasksTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('tasks', static function (Blueprint $table) {
+        $allowedStatus =  TaskStatusEnum::names();
+
+        Schema::create('tasks', static function (Blueprint $table) use ($allowedStatus) {
             $table->id();
             $table->string('title');
+            $table->enum('status', $allowedStatus)->default(TaskStatusEnum::CREATED->name);
             $table->boolean('completed')->default(false);
             $table->timestamp('completed_at')->nullable();
             $table->timestamps();

@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Task\TaskRequest;
-use App\Http\Resources\EmptyResponseResource;
 use App\Http\Resources\ErrorResponseResource;
 use App\Http\Resources\Task\TaskResource as TaskResponseResource;
 use App\Models\Task;
@@ -15,7 +13,7 @@ use Exception;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class ApiTaskController extends Controller
+class ApiTaskController extends ApiBaseController
 {
     private TaskServiceInterface $service;
 
@@ -47,8 +45,7 @@ class ApiTaskController extends Controller
         try {
             $task = $this->service->creatTask($request);
         } catch (Exception $e) {
-
-            return new ErrorResponseResource($e->getMessage());
+            return $this->apiErrorResponse($e->getMessage());
         }
 
         return new TaskResponseResource($task);
@@ -58,7 +55,7 @@ class ApiTaskController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Resources\Json\JsonResource|\App\Http\Resources\Task\TaskResource
+     * @return \App\Http\Resources\Task\TaskResource
      */
     public function show(Task $task): TaskResponseResource
     {
@@ -72,15 +69,14 @@ class ApiTaskController extends Controller
      *
      * @param \App\Http\Requests\Task\TaskRequest $request
      * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Resources\Json\JsonResource|\App\Http\Resources\Task\TaskResource
+     * @return \App\Http\Resources\Task\TaskResource|\App\Http\Resources\ErrorResponseResource
      */
-    public function update(TaskRequest $request, Task $task): TaskResponseResource
+    public function update(TaskRequest $request, Task $task): TaskResponseResource|ErrorResponseResource
     {
         try {
             $task = $this->service->updateTask($task, $request);
         } catch (Exception $e) {
-
-            return new ErrorResponseResource($e->getMessage());
+            return $this->apiErrorResponse($e->getMessage());
         }
 
         return new TaskResponseResource($task);
@@ -96,6 +92,6 @@ class ApiTaskController extends Controller
     {
         $task->delete();
 
-        return new EmptyResponseResource();
+        return $this->apiNoContentResponse();
     }
 }
