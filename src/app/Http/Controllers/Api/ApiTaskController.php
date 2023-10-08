@@ -55,7 +55,7 @@ class ApiTaskController extends ApiBaseController
      * Display the specified resource.
      *
      * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Resources\Json\JsonResource|\App\Http\Resources\Task\TaskResource
+     * @return \App\Http\Resources\Task\TaskResource
      */
     public function show(Task $task): TaskResponseResource
     {
@@ -69,9 +69,9 @@ class ApiTaskController extends ApiBaseController
      *
      * @param \App\Http\Requests\Task\TaskRequest $request
      * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Resources\Json\JsonResource|\App\Http\Resources\Task\TaskResource
+     * @return \App\Http\Resources\Task\TaskResource|\App\Http\Resources\ErrorResponseResource
      */
-    public function update(TaskRequest $request, Task $task): TaskResponseResource
+    public function update(TaskRequest $request, Task $task): TaskResponseResource|ErrorResponseResource
     {
         try {
             $task = $this->service->updateTask($task, $request);
