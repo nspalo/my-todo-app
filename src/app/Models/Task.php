@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\TaskStatusEnum;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -37,6 +38,7 @@ class Task extends Model
      */
     protected $fillable = [
         'title',
+        'status',
         'completed',
         'completed_at',
         'created_at',
@@ -64,9 +66,16 @@ class Task extends Model
         return $this->getAttribute('title');
     }
 
+    public function getStatus(): TaskStatusEnum
+    {
+        $status = $this->getAttribute('status');
+
+        return TaskStatusEnum::tryFrom($status->name);
+    }
+
     public function getCompleted(): bool
     {
-        return (bool)$this->getAttribute('completed');
+        return (bool) $this->getAttribute('completed');
     }
 
     public function getCompletedAt(): ?Carbon
@@ -77,6 +86,13 @@ class Task extends Model
     public function setTitle(string $title): self
     {
         $this->setAttribute('title', $title);
+
+        return $this;
+    }
+
+    public function setStatus(TaskStatusEnum $status): self
+    {
+        $this->setAttribute('status', $status);
 
         return $this;
     }

@@ -24,12 +24,12 @@ class TaskService implements TaskServiceInterface
     {
         $validated = $request->validated();
 
-        if(empty($validated) === true) {
+        if (empty($validated) === true) {
             throw new \RuntimeException('Invalid Request data');
         }
 
         return $this->repository->create(
-            new TaskResource($validated)
+            $this->createTaskResourceFromRequest($request)
         );
     }
 
@@ -47,13 +47,22 @@ class TaskService implements TaskServiceInterface
     {
         $validated = $request->validated();
 
-        if(empty($validated) === true) {
-            throw new \RuntimeException('Invalid Request data');
+        if (empty($validated) === true) {
+            throw new \RuntimeException('Invalid request data');
         }
 
         return $this->repository->update(
             $task,
-            new TaskResource($validated)
+            $this->createTaskResourceFromRequest($request)
         );
+    }
+
+    private function createTaskResourceFromRequest(TaskRequest $request): TaskResource
+    {
+        return new TaskResource([
+            'title' => $request->getTitle(),
+            'status' => $request->getStatus(),
+            'completed' => $request->getCompleted(),
+        ]);
     }
 }

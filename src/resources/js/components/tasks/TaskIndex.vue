@@ -20,6 +20,11 @@
                 </th>
                 <th class="px-6 py-3 bg-gray-50">
                     <span class="text-xs font-medium tracking-wider leading-4 text-left text-gray-500 uppercase">
+                        Status
+                    </span>
+                </th>
+                <th class="px-6 py-3 bg-gray-50">
+                    <span class="text-xs font-medium tracking-wider leading-4 text-left text-gray-500 uppercase">
                         Completed
                     </span>
                 </th>
@@ -40,10 +45,13 @@
                         {{ task.title }}
                     </td>
                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
+                        {{ task.status }}
+                    </td>
+                    <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                         {{ task.completed ? "Yes" : "No" }}
                     </td>
                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                        {{ task.completed_at }}
+                        {{ task.completed_at ? task.completed_at : "-"}}
                     </td>
                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap flex place-content-end">
                         <router-link
