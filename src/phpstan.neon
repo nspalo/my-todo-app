@@ -85,6 +85,13 @@ parameters:
     - '/Method Tests\\Feature\\Auth\\RegistrationTest::testRegistrationScreenCanBeRendered\(\) has no return type specified./'
     - '/Method Tests\\Feature\\Auth\\RegistrationTest::testNewUsersCanRegister\(\) has no return type specified./'
 
+    # TODO: SKIP PhpStan Annoying iterable type array checking!
+    # See: CODE_PATH | Line: XX
+    - '/Property (.*?)::(.*?) type has no value type specified in iterable type array./'
+    - '/Method (.*?) has parameter (.*?) with no value type specified in iterable type array./'
+    - '/Method (.*?) return type has no value type specified in iterable type array./'
+    - '/PHPDoc tag @return with type (.*?) is not subtype of native type array./'
+
     # TODO: TEMPLATE
     # See: CODE_PATH | Line: XX
     #- '//'
