@@ -9,25 +9,20 @@
 
     <form class="space-y-6" v-on:submit.prevent="saveTask">
         <div class="space-y-4 rounded-md shadow-sm">
-            <div>
-                <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-                <div class="mt-1">
-                    <input type="text" name="title" id="title"
-                           class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                           v-model="task.title">
-                </div>
-            </div>
 
-            <div>
-                <label for="completed" class="block text-sm font-medium text-gray-700">Completed</label>
-                <div class="mt-1">
-                    <input type="checkbox" name="completed" id="completed"
-                           class="block mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                           v-model="task.completed"
-                           :checked="task.completed"
-                    />
-                </div>
-            </div>
+            <InputGroupText
+                input-id="title"
+                input-label="Title"
+                input-name="title"
+                v-model="task.title"
+            />
+
+            <InputGroupCheckbox
+                input-id="completed"
+                input-label="Is Completed"
+                input-name="completed"
+                v-model="task.completed"
+            />
         </div>
 
         <button type="submit"
@@ -40,7 +35,11 @@
 <script>
 import {onMounted, ref} from "vue";
 import useTasks from "../../composables/tasks";
+import InputGroupText from "../FormFields/InputGroupText.vue";
+import InputGroupCheckbox from "../FormFields/InputGroupCheckbox.vue";
+
 export default {
+    components: {InputGroupCheckbox, InputGroupText},
     props: {
         id: {
             required: true,
