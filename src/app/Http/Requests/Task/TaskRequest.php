@@ -30,7 +30,7 @@ class TaskRequest extends FormRequest
             return TaskStatusEnum::CREATED;
         }
 
-        return TaskStatusEnum::from(
+        return TaskStatusEnum::create(
             $this->get('status')
         );
     }
@@ -47,7 +47,7 @@ class TaskRequest extends FormRequest
      */
     public function rules(): array
     {
-        $allowedStatus = implode(',', TaskStatusEnum::values());
+        $allowedStatus = implode(',', TaskStatusEnum::names());
 
         return [
             'title' => ['sometimes', 'required', 'string'],
