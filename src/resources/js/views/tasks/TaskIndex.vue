@@ -17,7 +17,7 @@
 <script>
 import useTasks from "../../composables/tasks.js";
 import { onMounted } from "vue";
-import DataTable from "../DataTable.vue";
+import DataTable from "../../components/DataTable.vue";
 
 export default {
     components: {DataTable},

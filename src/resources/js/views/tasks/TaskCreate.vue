@@ -29,7 +29,7 @@
 <script>
 import { reactive } from "vue";
 import useTasks from "../../composables/tasks";
-import InputGroupText from "../FormFields/InputGroupText.vue";
+import InputGroupText from "../../components/FormFields/InputGroupText.vue";
 
 export default {
     components: {InputGroupText},

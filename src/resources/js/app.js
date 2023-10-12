@@ -4,7 +4,7 @@ require('alpinejs');
 
 import { createApp } from "vue";
 import router from "./router";
-import TaskIndex from "./components/tasks/TaskIndex.vue";
+import TaskIndex from "./views/tasks/TaskIndex.vue";
 
 createApp({
     components: {

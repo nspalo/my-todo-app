@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import TaskIndex from "../components/tasks/TaskIndex.vue";
-import TaskCreate from "../components/tasks/TaskCreate.vue";
-import TaskEdit from "../components/tasks/TaskEdit.vue";
+import TaskIndex from "../views/tasks/TaskIndex.vue";
+import TaskCreate from "../views/tasks/TaskCreate.vue";
+import TaskEdit from "../views/tasks/TaskEdit.vue";
 
 const routes = [
     {
