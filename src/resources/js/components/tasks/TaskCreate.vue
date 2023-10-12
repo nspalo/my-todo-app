@@ -9,6 +9,7 @@
 
     <form class="space-y-6" @submit.prevent="saveTask">
         <div class="space-y-4 rounded-md shadow-sm">
+
             <!--
             <div>
                 <label for="name" class="block text-sm font-medium text-gray-700">Title</label>
@@ -19,15 +20,33 @@
                 </div>
             </div>
             -->
-
-            <div class="space-y-4 rounded-md shadow-sm">
-                <InputTextField
-                    input-label="Task Title"
-                    input-name="title"
-                    :input-value="form.title"
-                    v-model="form.title"
-                />
+            <div>
+                <label for="taskTitle" class="block text-sm font-medium text-gray-700">Task Title</label>
+                <div class="mt-1">
+                    <InputTextField
+                        input-id="taskTitle"
+                        input-name="title"
+                        v-model="form.title"
+                     />
+                </div>
             </div>
+
+
+            <div>
+                <label for="completed" class="block text-sm font-medium text-gray-700">Completed</label>
+                <div class="mt-1">
+                    <input
+                        id="completed"
+                        class="block mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                        type="checkbox"
+                        name="completed"
+                        :checked="form.completed"
+                        v-model="form.completed"
+                        disabled
+                    />
+                </div>
+            </div>
+
         </div>
 
         <button type="submit"
@@ -46,7 +65,8 @@ export default {
     components: {InputTextField},
     setup() {
         const form =  reactive({
-            'title': ''
+            'title': '',
+            'completed': false,
         });
 
         const { errors, storeTask } = useTasks();
