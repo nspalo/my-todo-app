@@ -1,16 +1,13 @@
-<script>
-export default {
-    name: "InputFieldText",
-    props: {
-        inputId: String,
-        inputName: String,
-        modelValue: {
-            type: String,
-            required: true,
-            default: ""
-        }
+<script setup>
+defineProps({
+    inputId: String,
+    inputName: String,
+    modelValue: {
+        type: String,
+        required: true,
+        default: ""
     }
-}
+});
 </script>
 
 <template>
