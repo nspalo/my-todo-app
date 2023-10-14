@@ -1,16 +1,13 @@
-<script>
-export default {
-    name: "InputFieldCheckbox",
-    props: {
-        inputId: String,
-        inputName: String,
-        modelValue: {
-            type: Boolean,
-            required: true,
-            default: false
-        }
+<script setup>
+defineProps({
+    inputId: String,
+    inputName: String,
+    modelValue: {
+        type: Boolean,
+        required: true,
+        default: false
     }
-}
+});
 </script>
 
 <template>
@@ -20,7 +17,6 @@ export default {
     :id=inputId
     :name=inputName
     :checked="modelValue"
-    v-model="modelValue"
     @input="$emit('update:modelValue', $event.target.checked)"
 />
 </template>

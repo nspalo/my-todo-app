@@ -35,8 +35,8 @@
 <script>
 import {onMounted, ref} from "vue";
 import useTasks from "../../composables/tasks";
-import InputGroupText from "../FormFields/InputGroupText.vue";
-import InputGroupCheckbox from "../FormFields/InputGroupCheckbox.vue";
+import InputGroupText from "../../components/FormFields/InputGroupText.vue";
+import InputGroupCheckbox from "../../components/FormFields/InputGroupCheckbox.vue";
 
 export default {
     components: {InputGroupCheckbox, InputGroupText},

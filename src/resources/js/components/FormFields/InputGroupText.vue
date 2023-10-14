@@ -1,16 +1,12 @@
-<script>
+<script setup>
 import InputFieldText from "./InputFields/InputFieldText.vue";
 
-export default {
-    name: "InputGroupText",
-    components: {InputFieldText},
-    props: {
-        inputId: String,
-        inputLabel: String,
-        inputName: String,
-        modelValue: String,
-    }
-}
+defineProps({
+    inputId: String,
+    inputLabel: String,
+    inputName: String,
+    modelValue: String,
+});
 </script>
 
 <template>
