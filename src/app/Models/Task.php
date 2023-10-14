@@ -70,7 +70,11 @@ class Task extends Model
     {
         $status = $this->getAttribute('status');
 
-        return TaskStatusEnum::tryFrom($status->name);
+        if (($status instanceof TaskStatusEnum) === true) {
+            return TaskStatusEnum::from($status->value);
+        }
+
+        return TaskStatusEnum::create($status);
     }
 
     public function getCompleted(): bool
