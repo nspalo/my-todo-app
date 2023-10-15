@@ -18,6 +18,13 @@ trait ArrayableEnumTrait
 
     public static function toArray(): array
     {
-        return array_combine(self::values(), self::names());
+        return array_combine(self::names(), self::values());
+    }
+
+    public static function create(string $status): self
+    {
+        return self::tryFrom(
+            self::toArray()[$status]
+        );
     }
 }
