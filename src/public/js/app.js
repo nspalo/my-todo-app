@@ -21093,7 +21093,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   setup: function setup() {
     var _useTasks = (0,_composables_tasks__WEBPACK_IMPORTED_MODULE_0__["default"])(),
       tasks = _useTasks.tasks,
-      getTasks = _useTasks.getTasks,
+      listTask = _useTasks.listTask,
       destroyTask = _useTasks.destroyTask;
     var deleteTask = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(taskId) {
@@ -21110,7 +21110,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return destroyTask(taskId);
             case 4:
               _context.next = 6;
-              return getTasks();
+              return listTask();
             case 6:
             case "end":
               return _context.stop();
@@ -21121,7 +21121,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return _ref.apply(this, arguments);
       };
     }();
-    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(getTasks);
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(listTask);
     return {
       tasks: tasks,
       deleteTask: deleteTask
@@ -21378,10 +21378,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _useTasks = (0,_composables_tasks__WEBPACK_IMPORTED_MODULE_1__["default"])(),
       errors = _useTasks.errors,
       task = _useTasks.task,
-      getTask = _useTasks.getTask,
+      showTask = _useTasks.showTask,
       updateTask = _useTasks.updateTask;
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
-      getTask(props.id);
+      showTask(props.id);
     });
     var saveTask = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -21434,8 +21434,8 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup() {
     var _useTasks = (0,_composables_tasks_js__WEBPACK_IMPORTED_MODULE_0__["default"])(),
       tasks = _useTasks.tasks,
-      getTasks = _useTasks.getTasks;
-    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(getTasks);
+      listTask = _useTasks.listTask;
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(listTask);
     return {
       tasks: tasks
     };
@@ -21912,7 +21912,7 @@ function useTasks() {
   var tasks = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
   var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();
   var errors = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
-  var getTask = /*#__PURE__*/function () {
+  var showTask = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(id) {
       var returnData;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -21929,11 +21929,11 @@ function useTasks() {
         }
       }, _callee);
     }));
-    return function getTask(_x) {
+    return function showTask(_x) {
       return _ref.apply(this, arguments);
     };
   }();
-  var getTasks = /*#__PURE__*/function () {
+  var listTask = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
       var returnData;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
@@ -21950,7 +21950,7 @@ function useTasks() {
         }
       }, _callee2);
     }));
-    return function getTasks() {
+    return function listTask() {
       return _ref2.apply(this, arguments);
     };
   }();
@@ -22041,8 +22041,8 @@ function useTasks() {
     task: task,
     tasks: tasks,
     errors: errors,
-    getTask: getTask,
-    getTasks: getTasks,
+    showTask: showTask,
+    listTask: listTask,
     storeTask: storeTask,
     updateTask: updateTask,
     destroyTask: destroyTask

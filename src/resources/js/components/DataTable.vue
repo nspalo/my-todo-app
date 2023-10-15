@@ -10,7 +10,7 @@ export default {
         }
     },
     setup() {
-        const { tasks, getTasks, destroyTask } = useTasks();
+        const { tasks, listTask, destroyTask } = useTasks();
 
         const deleteTask = async (taskId) => {
             if (!window.confirm('Are you sure?')) {
@@ -18,10 +18,10 @@ export default {
             }
 
             await destroyTask(taskId);
-            await getTasks();
+            await listTask();
         };
 
-        onMounted(getTasks);
+        onMounted(listTask);
 
         return {
             tasks,
