@@ -21083,14 +21083,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
-
-// defineProps({
-//     items: {
-//         type: Array,
-//         required: true
-//     }
-// });
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     tasks: {
@@ -21101,7 +21093,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   setup: function setup() {
     var _useTasks = (0,_composables_tasks__WEBPACK_IMPORTED_MODULE_0__["default"])(),
       tasks = _useTasks.tasks,
-      getTasks = _useTasks.getTasks,
+      listTask = _useTasks.listTask,
       destroyTask = _useTasks.destroyTask;
     var deleteTask = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(taskId) {
@@ -21118,7 +21110,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return destroyTask(taskId);
             case 4:
               _context.next = 6;
-              return getTasks();
+              return listTask();
             case 6:
             case "end":
               return _context.stop();
@@ -21129,7 +21121,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return _ref.apply(this, arguments);
       };
     }();
-    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(getTasks);
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(listTask);
     return {
       tasks: tasks,
       deleteTask: deleteTask
@@ -21386,10 +21378,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _useTasks = (0,_composables_tasks__WEBPACK_IMPORTED_MODULE_1__["default"])(),
       errors = _useTasks.errors,
       task = _useTasks.task,
-      getTask = _useTasks.getTask,
+      showTask = _useTasks.showTask,
       updateTask = _useTasks.updateTask;
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
-      getTask(props.id);
+      showTask(props.id);
     });
     var saveTask = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -21442,21 +21434,10 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup() {
     var _useTasks = (0,_composables_tasks_js__WEBPACK_IMPORTED_MODULE_0__["default"])(),
       tasks = _useTasks.tasks,
-      getTasks = _useTasks.getTasks;
-
-    // const deleteTask = async (taskId) => {
-    //     if (!window.confirm('Are you sure?')) {
-    //         return;
-    //     }
-    //
-    //     await destroyTask(taskId);
-    //     await getTasks();
-    // };
-
-    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(getTasks);
+      listTask = _useTasks.listTask;
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(listTask);
     return {
       tasks: tasks
-      //, deleteTask
     };
   }
 });
@@ -21479,25 +21460,12 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "relative overflow-x-auto shadow-md sm:rounded-lg"
 };
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex items-center justify-between pb-4 bg-white dark:bg-gray-900\"><div><button id=\"dropdownActionButton\" data-dropdown-toggle=\"dropdownAction\" class=\"inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700\" type=\"button\"><span class=\"sr-only\">Status</span> Status <svg class=\"w-2.5 h-2.5 ml-2.5\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 10 6\"><path stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m1 1 4 4 4-4\"></path></svg></button><!-- Dropdown menu --><div id=\"dropdownAction\" class=\"z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600\"><ul class=\"py-1 text-sm text-gray-700 dark:text-gray-200\" aria-labelledby=\"dropdownActionButton\"><li><a href=\"#\" class=\"block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white\">Task Status Here</a></li></ul><div class=\"py-1\"><a href=\"#\" class=\"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white\">Delete User</a></div></div></div><!-- Search Box --><label for=\"table-search\" class=\"sr-only\">Search</label><div class=\"relative\"><div class=\"absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none\"><svg class=\"w-4 h-4 text-gray-500 dark:text-gray-400\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 20 20\"><path stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z\"></path></svg></div><input type=\"text\" id=\"table-search\" class=\"block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500\" placeholder=\"Search for users\"></div></div>", 1);
-var _hoisted_3 = {
-  "class": "w-full text-sm text-left text-gray-500 dark:text-gray-400 divide-y divide-gray-200"
+var _hoisted_2 = {
+  "class": "w-full text-sm text-center text-gray-500 dark:text-gray-400 divide-y divide-gray-200"
 };
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", {
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", {
   "class": "text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-  scope: "col",
-  "class": "p-4"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex items-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  id: "checkbox-all-search",
-  type: "checkbox",
-  "class": "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "checkbox-all-search",
-  "class": "sr-only"
-}, "checkbox")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Checkbox section\n                TODO: Temporary hiding this section as this is not yet used and wasn't sure if this should be included\n                <th scope=\"col\" class=\"p-4\">\n                    <div class=\"flex items-center\">\n                        <input id=\"checkbox-all-search\" type=\"checkbox\" class=\"w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600\">\n                        <label for=\"checkbox-all-search\" class=\"sr-only\">checkbox</label>\n                    </div>\n                </th>\n                -- Checkbox section "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   scope: "col",
   "class": "px-6 py-3"
 }, " Title "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
@@ -21519,53 +21487,38 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   scope: "col",
   "class": "px-6 py-3"
 }, " Action ")])], -1 /* HOISTED */);
-var _hoisted_5 = {
+var _hoisted_4 = {
   "class": "bg-white divide-y divide-gray-200 divide-solid"
 };
+var _hoisted_5 = {
+  "class": "px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap"
+};
 var _hoisted_6 = {
-  "class": "w-4 p-4"
+  "class": "px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap"
 };
 var _hoisted_7 = {
-  "class": "flex items-center"
+  "class": "px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap"
 };
-var _hoisted_8 = ["id"];
-var _hoisted_9 = ["for"];
+var _hoisted_8 = {
+  "class": "px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap"
+};
+var _hoisted_9 = {
+  "class": "px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap"
+};
 var _hoisted_10 = {
   "class": "px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap"
 };
 var _hoisted_11 = {
-  "class": "px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap"
-};
-var _hoisted_12 = {
-  "class": "px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap"
-};
-var _hoisted_13 = {
-  "class": "px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap"
-};
-var _hoisted_14 = {
-  "class": "px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap"
-};
-var _hoisted_15 = {
-  "class": "px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap"
-};
-var _hoisted_16 = {
   "class": "px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap flex place-content-end"
 };
-var _hoisted_17 = ["onClick"];
+var _hoisted_12 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Data Table "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.tasks, function (task) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("- Status & Search section --\n        TODO: Temporary hiding this section as it not yet functional! - will fix later!!\n        <div class=\"flex items-center justify-between pb-4 bg-white dark:bg-gray-900\">\n            <div>\n                -- Dropdown button --\n                <button id=\"dropdownActionButton\" data-dropdown-toggle=\"dropdownAction\" class=\"inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700\" type=\"button\">\n                    <span class=\"sr-only\">Status</span>\n                    Status\n                    <svg class=\"w-2.5 h-2.5 ml-2.5\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 10 6\">\n                        <path stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m1 1 4 4 4-4\"/>\n                    </svg>\n                </button>\n\n                -- Dropdown menu --\n                <div id=\"dropdownAction\" class=\"z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600\">\n                    <ul class=\"py-1 text-sm text-gray-700 dark:text-gray-200\" aria-labelledby=\"dropdownActionButton\">\n                        <li>\n                            <a href=\"#\" class=\"block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white\">Task Status Here</a>\n                        </li>\n                    </ul>\n                    <div class=\"py-1\">\n                        <a href=\"#\" class=\"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white\">Delete User</a>\n                    </div>\n                </div>\n            </div>\n\n            -- Search Box --\n            <label for=\"table-search\" class=\"sr-only\">Search</label>\n            <div class=\"relative\">\n                <div class=\"absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none\">\n                    <svg class=\"w-4 h-4 text-gray-500 dark:text-gray-400\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 20 20\">\n                        <path stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z\"/>\n                    </svg>\n                </div>\n                <input type=\"text\" id=\"table-search\" class=\"block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500\" placeholder=\"Search for users\">\n            </div>\n        </div>\n        TODO: ENDS HERE\n        --- Status & Search section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Data Table "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.tasks, function (task) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       key: task.id,
       "class": "bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-      "class": "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600",
-      id: task.id,
-      type: "checkbox"
-    }, null, 8 /* PROPS */, _hoisted_8), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-      "for": task.id,
-      "class": "sr-only"
-    }, "checkbox", 8 /* PROPS */, _hoisted_9)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(task.title), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(task.status), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(task.completed ? "Yes" : "No"), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(task.completed_at ? task.completed_at : "-"), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(task.updated_at ? task.updated_at : "-"), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(task.created_at ? task.created_at : "-"), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Checkbox section --\n                TODO: Temporary hiding this section as this is not yet used and wasn't sure if this should be included\n                <td class=\"w-4 p-4\">\n                    <div class=\"flex items-center\">\n                        <input\n                            class=\"w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600\"\n                            :id=\"task.id\"\n                            type=\"checkbox\"\n                        >\n                        <label\n                            v-bind:for=\"task.id\"\n                            class=\"sr-only\"\n                        >checkbox</label>\n                    </div>\n                </td>\n                -- Checkbox section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(task.title), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(task.status), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(task.completed ? "Yes" : "No"), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(task.completed_at ? task.completed_at : "-"), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(task.updated_at ? task.updated_at : "-"), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(task.created_at ? task.created_at : "-"), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
       to: {
         name: 'tasks.edit',
         params: {
@@ -21583,7 +21536,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return $setup.deleteTask(task.id);
       },
       "class": "inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150"
-    }, " Delete ", 8 /* PROPS */, _hoisted_17)])]);
+    }, " Delete ", 8 /* PROPS */, _hoisted_12)])]);
   }), 128 /* KEYED_FRAGMENT */))])])]);
 }
 
@@ -21959,7 +21912,7 @@ function useTasks() {
   var tasks = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
   var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();
   var errors = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
-  var getTask = /*#__PURE__*/function () {
+  var showTask = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(id) {
       var returnData;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -21976,11 +21929,11 @@ function useTasks() {
         }
       }, _callee);
     }));
-    return function getTask(_x) {
+    return function showTask(_x) {
       return _ref.apply(this, arguments);
     };
   }();
-  var getTasks = /*#__PURE__*/function () {
+  var listTask = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
       var returnData;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
@@ -21997,7 +21950,7 @@ function useTasks() {
         }
       }, _callee2);
     }));
-    return function getTasks() {
+    return function listTask() {
       return _ref2.apply(this, arguments);
     };
   }();
@@ -22088,8 +22041,8 @@ function useTasks() {
     task: task,
     tasks: tasks,
     errors: errors,
-    getTask: getTask,
-    getTasks: getTasks,
+    showTask: showTask,
+    listTask: listTask,
     storeTask: storeTask,
     updateTask: updateTask,
     destroyTask: destroyTask

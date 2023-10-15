@@ -22,9 +22,9 @@ import DataTable from "../../components/DataTable.vue";
 export default {
     components: {DataTable},
     setup() {
-        const { tasks, getTasks } = useTasks();
+        const { tasks, listTask } = useTasks();
 
-        onMounted(getTasks);
+        onMounted(listTask);
 
         return {
             tasks

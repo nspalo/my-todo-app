@@ -10,7 +10,7 @@ export default {
         }
     },
     setup() {
-        const { tasks, getTasks, destroyTask } = useTasks();
+        const { tasks, listTask, destroyTask } = useTasks();
 
         const deleteTask = async (taskId) => {
             if (!window.confirm('Are you sure?')) {
@@ -18,10 +18,10 @@ export default {
             }
 
             await destroyTask(taskId);
-            await getTasks();
+            await listTask();
         };
 
-        onMounted(getTasks);
+        onMounted(listTask);
 
         return {
             tasks,
@@ -34,8 +34,12 @@ export default {
 <template>
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+
+        <!--- Status & Search section --
+        TODO: Temporary hiding this section as it not yet functional! - will fix later!!
         <div class="flex items-center justify-between pb-4 bg-white dark:bg-gray-900">
             <div>
+                -- Dropdown button --
                 <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction" class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
                     <span class="sr-only">Status</span>
                     Status
@@ -43,7 +47,8 @@ export default {
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                     </svg>
                 </button>
-                <!-- Dropdown menu -->
+
+                -- Dropdown menu --
                 <div id="dropdownAction" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                     <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownActionButton">
                         <li>
@@ -56,7 +61,7 @@ export default {
                 </div>
             </div>
 
-            <!-- Search Box -->
+            -- Search Box --
             <label for="table-search" class="sr-only">Search</label>
             <div class="relative">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -66,19 +71,23 @@ export default {
                 </div>
                 <input type="text" id="table-search" class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for users">
             </div>
-
         </div>
+        TODO: ENDS HERE
+        --- Status & Search section -->
 
         <!-- Data Table -->
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 divide-y divide-gray-200">
+        <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400 divide-y divide-gray-200">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
+                <!-- Checkbox section
+                TODO: Temporary hiding this section as this is not yet used and wasn't sure if this should be included
                 <th scope="col" class="p-4">
                     <div class="flex items-center">
                         <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                         <label for="checkbox-all-search" class="sr-only">checkbox</label>
                     </div>
                 </th>
+                -- Checkbox section -->
                 <th scope="col" class="px-6 py-3">
                     Title
                 </th>
@@ -106,6 +115,9 @@ export default {
             <tbody class="bg-white divide-y divide-gray-200 divide-solid">
             <template v-for="task in tasks" :key="task.id">
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+
+                <!-- Checkbox section --
+                TODO: Temporary hiding this section as this is not yet used and wasn't sure if this should be included
                 <td class="w-4 p-4">
                     <div class="flex items-center">
                         <input
@@ -119,6 +131,8 @@ export default {
                         >checkbox</label>
                     </div>
                 </td>
+                -- Checkbox section -->
+
                 <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                     {{ task.title }}
                 </td>

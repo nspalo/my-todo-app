@@ -8,13 +8,13 @@ export default function useTasks() {
     const router = useRouter();
     const errors = ref('');
 
-    const getTask = async (id) => {
+    const showTask = async (id) => {
         let returnData = await axios.get('/api/tasks/' + id);
 
         task.value = returnData.data.data;
     };
 
-    const getTasks = async () => {
+    const listTask = async () => {
         let returnData = await axios.get('/api/tasks');
 
         tasks.value = returnData.data.data;
@@ -58,8 +58,8 @@ export default function useTasks() {
         task,
         tasks,
         errors,
-        getTask,
-        getTasks,
+        showTask,
+        listTask,
         storeTask,
         updateTask,
         destroyTask
