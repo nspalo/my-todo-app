@@ -16,7 +16,7 @@ services:
       dockerfile: containers/nginx/Dockerfile
     image: nginx:nginx-stable-alpine
     ports:
-      - "8080:80"
+      - "80:80"
     volumes:
       - "${PATH_CONFIGS_NGINX}:/etc/nginx/conf.d/default.conf"
       - "${PATH_VOLUMES_LOGS}/nginx:/var/log/nginx"
