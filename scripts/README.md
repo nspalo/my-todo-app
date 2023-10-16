@@ -6,7 +6,7 @@
 - Below is an overview of how the project directory structure would look like.
 - Add / Remove / Rename according to the needs or liking or whatever make sense.
 ```
-my-project/                      // Main Project Directory
+my-project/                        // Main Project Directory
 ├── ...
 ├── scripts/                       // This should contains all *.sh files 
 │   ├── main-docker-compose.sh     // Main script that executes the base docker commands
@@ -16,7 +16,8 @@ my-project/                      // Main Project Directory
 │   ├── stop.sh                    // Stop running service
 │   ├── run.sh                     // Run a specific container
 │   ├── exec.sh                    // Run command inside a container
-│   ├── composer.sh                // Run composer and its command
+│   ├── composer.sh                // Run composer related commands
+│   ├── npm.sh                     // Run npm(node) related commands
 │   ├── prune.sh                   // Remove all images, run with care!
 │   ├── *.sh
 │   └── ...
@@ -56,4 +57,4 @@ my-project/                      // Main Project Directory
 ```
 
 ### Accessing the site
-Hit the browser at `localhost:8080`
+Hit the browser at `localhost`
