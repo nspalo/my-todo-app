@@ -10,7 +10,7 @@
             </div>
         </div>
 
-        <DataTable :items="tasks" />
+        <DataTable :tasks="tasks" />
     </div>
 </template>
 
@@ -22,22 +22,12 @@ import DataTable from "../../components/DataTable.vue";
 export default {
     components: {DataTable},
     setup() {
-        const { tasks, getTasks, destroyTask } = useTasks();
+        const { tasks, listTask } = useTasks();
 
-        const deleteTask = async (taskId) => {
-            if (!window.confirm('Are you sure?')) {
-                return;
-            }
-
-            await destroyTask(taskId);
-            await getTasks();
-        };
-
-        onMounted(getTasks);
+        onMounted(listTask);
 
         return {
-            tasks,
-            deleteTask
+            tasks
         };
     }
 }

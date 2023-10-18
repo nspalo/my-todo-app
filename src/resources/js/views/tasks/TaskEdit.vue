@@ -50,11 +50,11 @@ export default {
         }
     },
     setup(props) {
-        const { errors, task, getTask, updateTask } = useTasks();
+        const { errors, task, showTask, updateTask } = useTasks();
 
         onMounted(
              () => {
-                 getTask(props.id);
+                 showTask(props.id);
             }
         );
 
