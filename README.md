@@ -5,7 +5,6 @@
 
 ## Directory Structure
 - Below is an overview of the project directory structure.
-- Add / Remove / Rename according to the needs or liking or whatever make sense.
 ```
 my-project/                        // Main Project Directory
 ├── docker/                        // Docker Related
@@ -50,7 +49,7 @@ my-project/                        // Main Project Directory
 │   └── *.sh
 └── src/                           // Project source code here...
     ├──────────────────────────────────────────────────────────────────────────────────────────
-    │ My To-Do App codes - Laravel 8, Vue 3, Tailwind CSS, PHP 8.1, MySQL 5.7
+    │ My To-Do App codes - Laravel 8, Vue.Js 3, Tailwind CSS, PHP 8.1, MySQL 5.7
     ├──────────────────────────────────────────────────────────────────────────────────────────
     ├── app/
     ├── ...
@@ -59,11 +58,12 @@ my-project/                        // Main Project Directory
 
 ## Service containers
 > <b>Note:</b>  
-> Check `docker/environment/config.env` for configuration for environment
-> specific configurations, check local.env, test.env, and prod.env
+> Check `docker/environment/config.env` for configuration.  
+> For environment specific configurations check `local.env`, `test.env`, and `prod.env` files
 
 Building, Running, Stopping, Removing images and service containers  
-- scripts have been prepared to make these process user easy
+- To make running of commands easy, a few scripts was prepared.
+  - See: `scripts/` directory for more info.
 
 ```
 // Building the images
@@ -123,11 +123,12 @@ Hit the browser at `localhost` or `my-todo.local`(if host file was updated).
 
 ### Functionalities / Features
 - Current
-  - Basic CRUD for task management
-  - Api endpoints
-  - Use of Services, Repository, Trait, Enums, Resource / DTO
+  - [X] Basic CRUD for task management
+  - [X] Api endpoints
+  - [X] Use of Services, Repository, Trait, Enums, Resource / DTO
+  - [X] Use Vue.js 3, Tailwind CSS
 - Goal
-  - Basic CRUD for User management
-  - User Roles & Permissions
-  - User Task management
-  - Dashboard with Charts and/or Tables for User Task data
+  - [ ] Basic CRUD for User management
+  - [ ] User Roles & Permissions
+  - [ ] User Task management
+  - [ ] Dashboard with Charts and/or Tables for User Task data
